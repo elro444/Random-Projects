@@ -1,0 +1,15 @@
+This is the protocol:
+
+* connect (server accepted)*
+1. client greets, with a parameter to say the reason of connection.
+reasons: 0 - normal client. 1 - pendingTimeConnection. (there will probably always be 0 and then if pending - connect as 1)
+2. server responds with a parameter which is the client's assigned ID. (the client uses this one when connecting to the pendingTimeConnection)
+3. when pending, can send 'kill all others' request, with ID specified as to which to not disconnect (self).
+4.   ''  ''       ''  ''   requests to see how many left untill self's turn.
+5. when it's the client's turn, can send these requests:
+    Disconnect.
+    GetVolume
+    SetVolume, with param going from 0 to 100
+    GetMute
+    SetMute, with param bool.
+    ToggleMute. (no param)
